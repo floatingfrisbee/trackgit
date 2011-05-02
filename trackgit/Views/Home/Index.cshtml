@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<script type="text/javascript">
+
+    function OnCheckIn() {
+        var checkInInfo = {
+            projectId: 1, 
+            userId: 2, 
+            CheckInInfo: { 
+                Comment: "Here's a git checkin"
+            }
+        };
+
+        $.ajax({
+            url: '/checkins',
+            type: 'POST',
+            data: JSON.stringify(checkInInfo),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function () {
+                alert("success");
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+
+</script>
+
+<input type="button" value="check something in" onclick="OnCheckIn()"/>
